@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boyfriend Re-Application ❤️</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+            overflow: hidden;
+            background: linear-gradient(135deg, #ffd6e7, #e8d5ff, #ffdce8);
+            color: #5b2348;
+        }
+
+        .page {
+            display: none;
+            min-height: 100vh;
+            width: 100%;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 25px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page.active {
+            display: flex;
+        }
+
+        .card {
+            width: 90%;
+            max-width: 600px;
+            padding: 40px 30px;
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: 30px;
+            box-shadow: 0 10px 40px rgba(120, 50, 90, 0.18);
+            position: relative;
+            z-index: 5;
+        }
+
+        h1 {
+            font-size: 38px;
+            margin-bottom: 15px;
+        }
+
+        h2 {
+            font-size: 30px;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .heart {
+            font-size: 90px;
+            animation: heartbeat 1.2s infinite;
+            margin-bottom: 15px;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.18);
+            }
+        }
+
+        button {
+            border: none;
+            border-radius: 30px;
+            padding: 14px 30px;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .main-btn {
+            background: #e75480;
+            color: white;
+        }
+
+        .main-btn:hover {
+            transform: scale(1.05);
+            background: #d94370;
+        }
+
+        .main-btn:disabled {
+            background: #bca9b1;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .small-text {
+            font-size: 14px;
+            opacity: 0.75;
+            margin-top: 15px;
+        }
+
+        .checklist {
+            text-align: left;
+            margin: 25px auto;
+            max-width: 500px;
+            max-height: 390px;
+            overflow-y: auto;
+        }
+
+        .check-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 13px 15px;
+            margin: 10px 0;
+            background: rgba(255, 232, 241, 0.85);
+            border-radius: 15px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .check-item:hover {
+            transform: translateX(5px);
+            background: #ffe0eb;
+        }
+
+        .check-item input {
+            width: 20px;
+            height: 20px;
+            accent-color: #e75480;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .check-item label {
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .proposal-text {
+            font-size: 20px;
+            margin: 10px auto 25px;
+        }
+
+        .proposal-question {
+            font-size: 42px;
+            color: #d94370;
+            margin: 20px 0 30px;
+            animation: softPulse 1.5s infinite;
+        }
+
+        @keyframes softPulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.04);
+            }
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            position: relative;
+            min-height: 60px;
+        }
+
+        .yes-btn {
+            background: #e75480;
+            color: white;
+        }
+
+        .yes-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .no-btn {
+            background: #777;
+            color: white;
+            position: relative;
+        }
+
+        .no-btn:hover {
+            background: #666;
+        }
+
+        .message-box {
+            display: none;
+            background: #fff0f5;
+            padding: 15px;
+            border-radius: 15px;
+            margin-top: 20px;
+            font-weight: bold;
+            color: #c93669;
+        }
+
+        .message-box.show {
+            display: block;
+            animation: pop 0.3s ease;
+        }
+
+        @keyframes pop {
+            from {
+                transform: scale(0.7);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .success-heart {
+            font-size: 75px;
+            animation: heartbeat 1s infinite;
+        }
+
+        .approved {
+            color: #d94370;
+            font-size: 32px;
+            margin-bottom: 15px;
+        }
+
+        .benefits {
+            text-align: left;
+            max-width: 400px;
+            margin: 20px auto;
+        }
+
+        .benefit {
+            background: #fff0f5;
+            padding: 13px 18px;
+            border-radius: 15px;
+            margin: 10px 0;
+            font-size: 17px;
+        }
+
+        .future {
+            font-size: 22px;
+            font-weight: bold;
+            color: #8f5680;
+            margin-top: 20px;
+        }
+
+        .restart-btn {
+            background: #8f5680;
+            color: white;
+            margin-top: 10px;
+        }
+
+        .restart-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .floating-heart {
+            position: absolute;
+            bottom: -30px;
+            font-size: 22px;
+            animation: floatUp linear forwards;
+            opacity: 0.7;
+            z-index: 1;
+        }
+
+        @keyframes floatUp {
+            from {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0.7;
+            }
+
+            to {
+                transform: translateY(-110vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .flower {
+            position: fixed;
+            top: -50px;
+            font-size: 30px;
+            animation: fall linear forwards;
+            z-index: 20;
+            pointer-events: none;
+        }
+
+        @keyframes fall {
+            from {
+                transform: translateY(-50px) rotate(0deg);
+            }
+
+            to {
+                transform: translateY(110vh) rotate(360deg);
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            h1 {
+                font-size: 30px;
+            }
+
+            h2 {
+                font-size: 25px;
+            }
+
+            .proposal-question {
+                font-size: 32px;
+            }
+
+            .card {
+                padding: 30px 20px;
+            }
+
+            .check-item label {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- PAGE 1 -->
+
+    <section id="page1" class="page active">
+
+        <div class="card">
+
+            <div class="heart">❤️</div>
+
+            <h1>Welcome, My Favorite Person 💕</h1>
+
+            <p>
+                You have been invited to a very important application process.
+                <br>
+                Please proceed only if you are ready for some serious questions. 😌
+            </p>
+
+            <button class="main-btn" onclick="goToPage(2)">
+                ENTER ❤️
+            </button>
+
+            <div class="small-text">
+                Official Boyfriend Re-Application Portal 💌
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- PAGE 2 -->
+
+    <section id="page2" class="page">
+
+        <div class="card">
+
+            <h2>💼 Boyfriend Qualification Test</h2>
+
+            <p>
+                Before proceeding, you must confirm that you are qualified
+                for the position again. 😌❤️
+            </p>
+
+            <div class="checklist">
+
+                <div class="check-item">
+                    <input type="checkbox" class="qualification">
+                    <label>Be honest with me. ❤️</label>
+                </div>
+
+                <div class="check-item">
+                    <input type="checkbox" class="qualification">
+                    <label>Be loyal to me. ❤️</label>
+                </div>
+
+                <div class="check-item">
+                    <input type="checkbox" class="qualification">
+                    <label>All girls are your sisters... except me. 😂</label>
+                </div>
+
+                <div class="check-item">
+                    <input type="checkbox" class="qualification">
+                    <label>Don't lie to me. 🚫</label>
+                </div>
+
+                <div class="check-item">
+                    <input type="checkbox" class="qualification">
+                    <label>Don't show ego to me. 😌</label>
+                </div>
+
+                <div class="check-item">
+                    <input type="checkbox" class="qualification">
+                    <label>Communicate with me instead of disappearing. 👀</label>
+                </div>
+
+                <div class="check-item">
+                    <input type="checkbox" class="qualification">
+                    <label>Be there for me emotionally. 🫂</label>
+                </div>
+
+                <div class="check-item">
+                    <input type="checkbox" class="qualification">
+                    <label>Accept that I am always right. 😌😂</label>
+                </div>
+
+                <div class="check-item">
+                    <input type="checkbox" class="qualification">
+                    <label>Be ready to love me all over again. ❤️</label>
+                </div>
+
+            </div>
+
+            <button id="qualificationBtn"
+                    class="main-btn"
+                    onclick="goToPage(3)"
+                    disabled>
+                ENTER 💌
+            </button>
+
+            <div class="small-text">
+                *Every box must be checked. No skipping. 😂
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- PAGE 3 -->
+
+    <section id="page3" class="page">
+
+        <div class="card">
+
+            <div class="heart">💗</div>
+
+            <h2>Application Review Complete...</h2>
+
+            <p class="proposal-text">
+                After carefully reviewing your application,
+                your performance has been evaluated...
+            </p>
+
+            <p class="proposal-text">
+                And honestly...
+                I don't think I want anyone else. ❤️
+            </p>
+
+            <div class="proposal-question">
+                Will you be my boyfriend... again? 💍
+            </div>
+
+            <div class="buttons">
+
+                <button class="yes-btn" onclick="sayYes()">
+                    YES ❤️
+                </button>
+
+                <button id="noButton"
+                        class="no-btn"
+                        onclick="sayNo()">
+                    NO 😏
+                </button>
+
+            </div>
+
+            <div id="noMessage" class="message-box">
+
+                🚨 ERROR 404 🚨
+                <br><br>
+
+                The "NO" option has mysteriously stopped working. 😂
+                <br>
+
+                Please click YES and continue. ❤️
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- PAGE 4 -->
+
+    <section id="page4" class="page">
+
+        <div class="card">
+
+            <div class="success-heart">
+                💖
+            </div>
+
+            <div class="approved">
+                APPLICATION APPROVED! 🎉
+            </div>
+
+            <p>
+                Congratulations! 🥳
+                <br><br>
+                You have officially been selected for the position of:
+            </p>
+
+            <h2>
+                MY BOYFRIEND — AGAIN ❤️💍
+            </h2>
+
+            <div class="benefits">
+
+                <div class="benefit">
+                    ❤️ <strong>Unlimited love</strong>
+                </div>
+
+                <div class="benefit">
+                    🫂 <strong>Emotional support</strong>
+                </div>
+
+                <div class="benefit">
+                    😂 <strong>Always arguing</strong>
+                </div>
+
+                <div class="benefit">
+                    💕 <strong>Lifetime membership</strong>
+                </div>
+
+            </div>
+
+            <div class="future">
+                Future upgrade: HUSBAND 😌💍
+            </div>
+
+            <p class="small-text">
+                No cancellation. No refunds. No exchanges.
+                <br>
+                You already signed the contract. 😂❤️
+            </p>
+
+            <button class="restart-btn" onclick="restart()">
+                Go Back & Start This Love Story Again 🔄❤️
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <script>
+
+        var checkboxes =
+            document.querySelectorAll(".qualification");
+
+        var qualificationBtn =
+            document.getElementById("qualificationBtn");
+
+
+        checkboxes.forEach(function(box) {
+
+            box.addEventListener("change", function() {
+
+                var allChecked = true;
+
+                checkboxes.forEach(function(item) {
+
+                    if (!item.checked) {
+                        allChecked = false;
+                    }
+
+                });
+
+                qualificationBtn.disabled =
+                    !allChecked;
+
+            });
+
+        });
+
+
+        function goToPage(pageNumber) {
+
+            document
+                .querySelectorAll(".page")
+                .forEach(function(page) {
+
+                    page.classList.remove("active");
+
+                });
+
+            document
+                .getElementById("page" + pageNumber)
+                .classList.add("active");
+
+        }
+
+
+        function sayNo() {
+
+            var message =
+                document.getElementById("noMessage");
+
+            message.classList.add("show");
+
+            var noButton =
+                document.getElementById("noButton");
+
+            noButton.style.position = "fixed";
+
+            var maxX =
+                window.innerWidth -
+                noButton.offsetWidth -
+                30;
+
+            var maxY =
+                window.innerHeight -
+                noButton.offsetHeight -
+                30;
+
+            noButton.style.left =
+                Math.random() * maxX + "px";
+
+            noButton.style.top =
+                Math.random() * maxY + "px";
+
+        }
+
+
+        function sayYes() {
+
+            goToPage(4);
+
+            createFlowers();
+
+            createHearts();
+
+        }
+
+
+        function createFlowers() {
+
+            var flowers = [
+                "🌸",
+                "🌹",
+                "🌷",
+                "🌺",
+                "💐",
+                "🌻"
+            ];
+
+            for (var i = 0; i < 60; i++) {
+
+                var flower =
+                    document.createElement("div");
+
+                flower.className = "flower";
+
+                flower.innerHTML =
+                    flowers[
+                        Math.floor(
+                            Math.random() *
+                            flowers.length
+                        )
+                    ];
+
+                flower.style.left =
+                    Math.random() * 100 + "vw";
+
+                flower.style.animationDuration =
+                    (3 + Math.random() * 5) + "s";
+
+                flower.style.animationDelay =
+                    Math.random() * 3 + "s";
+
+                document.body.appendChild(flower);
+
+            }
+
+            setTimeout(function() {
+
+                document
+                    .querySelectorAll(".flower")
+                    .forEach(function(item) {
+
+                        item.remove();
+
+                    });
+
+            }, 10000);
+
+        }
+
+
+        function createHearts() {
+
+            var hearts = [
+                "❤️",
+                "💕",
+                "💗",
+                "💖",
+                "💘"
+            ];
+
+            for (var i = 0; i < 25; i++) {
+
+                var heart =
+                    document.createElement("div");
+
+                heart.className =
+                    "floating-heart";
+
+                heart.innerHTML =
+                    hearts[
+                        Math.floor(
+                            Math.random() *
+                            hearts.length
+                        )
+                    ];
+
+                heart.style.left =
+                    Math.random() * 100 + "vw";
+
+                heart.style.animationDuration =
+                    (4 + Math.random() * 5) + "s";
+
+                heart.style.animationDelay =
+                    Math.random() * 2 + "s";
+
+                document.body.appendChild(heart);
+
+            }
+
+            setTimeout(function() {
+
+                document
+                    .querySelectorAll(".floating-heart")
+                    .forEach(function(item) {
+
+                        item.remove();
+
+                    });
+
+            }, 10000);
+
+        }
+
+
+        function restart() {
+
+            document
+                .querySelectorAll(".qualification")
+                .forEach(function(box) {
+
+                    box.checked = false;
+
+                });
+
+            qualificationBtn.disabled = true;
+
+            document
+                .getElementById("noMessage")
+                .classList.remove("show");
+
+
+            var noButton =
+                document.getElementById("noButton");
+
+            noButton.style.position = "relative";
+
+            noButton.style.left = "auto";
+
+            noButton.style.top = "auto";
+
+
+            document
+                .querySelectorAll(".flower")
+                .forEach(function(item) {
+
+                    item.remove();
+
+                });
+
+
+            document
+                .querySelectorAll(".floating-heart")
+                .forEach(function(item) {
+
+                    item.remove();
+
+                });
+
+
+            goToPage(1);
+
+        }
+
+
+        createHearts();
+
+    </script>
+
+</body>
+</html>
+

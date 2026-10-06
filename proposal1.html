@@ -1,0 +1,578 @@
+
+   <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Will You Marry Me?</title>
+
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    overflow: hidden;
+    height: 100vh;
+
+    background: radial-gradient(
+        circle at top,
+        #28113f,
+        #08000f 75%
+    );
+
+    font-family: Georgia, serif;
+}
+
+.scene {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.star {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: white;
+    border-radius: 50%;
+    animation: twinkle 2s infinite alternate;
+}
+
+.star:nth-child(1) {
+    top: 12%;
+    left: 8%;
+}
+
+.star:nth-child(2) {
+    top: 22%;
+    left: 20%;
+}
+
+.star:nth-child(3) {
+    top: 10%;
+    left: 38%;
+}
+
+.star:nth-child(4) {
+    top: 28%;
+    left: 55%;
+}
+
+.star:nth-child(5) {
+    top: 15%;
+    left: 72%;
+}
+
+.star:nth-child(6) {
+    top: 35%;
+    left: 85%;
+}
+
+.star:nth-child(7) {
+    top: 42%;
+    left: 12%;
+}
+
+.star:nth-child(8) {
+    top: 38%;
+    left: 70%;
+}
+
+.star:nth-child(9) {
+    top: 18%;
+    left: 90%;
+}
+
+.star:nth-child(10) {
+    top: 45%;
+    left: 45%;
+}
+
+@keyframes twinkle {
+    from {
+        opacity: 0.2;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.moon {
+    position: absolute;
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background: white;
+    top: 60px;
+    right: 100px;
+    box-shadow: 0 0 35px white;
+}
+
+.big-heart {
+    position: absolute;
+    width: 270px;
+    height: 270px;
+    left: 50%;
+    top: 30%;
+    background: #8a2be2;
+
+    transform:
+        translate(-50%, -50%)
+        rotate(-45deg)
+        scale(0);
+
+    opacity: 0;
+
+    box-shadow:
+        0 0 30px #8a2be2,
+        0 0 70px #a020f0,
+        0 0 120px #c77dff;
+
+    animation:
+        heartAppear 3s forwards 10s;
+
+    z-index: 2;
+}
+
+.big-heart::before,
+.big-heart::after {
+    content: "";
+    position: absolute;
+    width: 270px;
+    height: 270px;
+    background: #8a2be2;
+    border-radius: 50%;
+}
+
+.big-heart::before {
+    top: -135px;
+    left: 0;
+}
+
+.big-heart::after {
+    top: 0;
+    left: 135px;
+}
+
+@keyframes heartAppear {
+    to {
+        transform:
+            translate(-50%, -50%)
+            rotate(-45deg)
+            scale(1);
+
+        opacity: 1;
+    }
+}
+
+#message {
+    position: absolute;
+    left: 50%;
+    top: 30%;
+    width: 350px;
+
+    transform:
+        translate(-50%, -50%)
+        scale(0.5);
+
+    text-align: center;
+    color: white;
+    font-size: 36px;
+    font-weight: bold;
+    line-height: 1.35;
+    opacity: 0;
+    z-index: 10;
+
+    text-shadow:
+        0 0 8px white,
+        0 0 18px #e0aaff,
+        0 0 35px #c77dff,
+        0 0 60px #8a2be2;
+
+    animation:
+        messageAppear 4s forwards 13s;
+}
+
+@keyframes messageAppear {
+    to {
+        opacity: 1;
+
+        transform:
+            translate(-50%, -50%)
+            scale(1);
+    }
+}
+
+.ground {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 100px;
+
+    background:
+        linear-gradient(
+            to top,
+            #050005,
+            transparent
+        );
+}
+
+.girl {
+    position: absolute;
+    width: 100px;
+    height: 260px;
+    bottom: 70px;
+    left: -120px;
+    z-index: 20;
+
+    animation:
+        girlWalk 5s forwards;
+}
+
+@keyframes girlWalk {
+    0% {
+        left: -120px;
+    }
+
+    100% {
+        left: calc(50% - 190px);
+    }
+}
+
+.boy {
+    position: absolute;
+    width: 100px;
+    height: 260px;
+    bottom: 70px;
+    right: -120px;
+    z-index: 20;
+
+    animation:
+        boyWalk 5s forwards;
+}
+
+@keyframes boyWalk {
+    0% {
+        right: -120px;
+    }
+
+    100% {
+        right: calc(50% - 80px);
+    }
+}
+
+.head {
+    position: absolute;
+    width: 58px;
+    height: 58px;
+    top: 10px;
+    left: 21px;
+    border-radius: 50%;
+    background: #f2b58f;
+    z-index: 3;
+}
+
+.girl .head {
+    box-shadow:
+        inset 0 12px 0 #24120b,
+        0 0 0 7px #24120b;
+}
+
+.boy .head {
+    box-shadow:
+        inset 0 12px 0 #17100d,
+        0 0 0 5px #17100d;
+}
+
+.body {
+    position: absolute;
+    width: 70px;
+    height: 95px;
+    top: 65px;
+    left: 15px;
+
+    border-radius:
+        25px
+        25px
+        10px
+        10px;
+}
+
+.girl .body {
+    width: 82px;
+    height: 110px;
+    left: 9px;
+    background: #b86cff;
+
+    border-radius:
+        35px
+        35px
+        15px
+        15px;
+}
+
+.boy .body {
+    background: #283593;
+}
+
+.leg {
+    position: absolute;
+    width: 16px;
+    height: 95px;
+    top: 155px;
+    background: #222;
+    border-radius: 10px;
+}
+
+.left-leg {
+    left: 25px;
+}
+
+.right-leg {
+    left: 58px;
+}
+
+.girl .leg {
+    background: #f2b58f;
+}
+
+.arm {
+    position: absolute;
+    width: 15px;
+    height: 75px;
+    top: 75px;
+    background: #f2b58f;
+    border-radius: 10px;
+    transform-origin: top center;
+    z-index: 5;
+}
+
+.girl .left-arm {
+    left: 0;
+    transform: rotate(15deg);
+}
+
+.girl .right-arm {
+    right: 0;
+    transform: rotate(-45deg);
+
+    animation:
+        girlGive 2s forwards 5s;
+}
+
+.boy .left-arm {
+    left: 0;
+    transform: rotate(45deg);
+
+    animation:
+        boyReceive 2s forwards 5s;
+}
+
+.boy .right-arm {
+    right: 0;
+    transform: rotate(-15deg);
+}
+
+@keyframes girlGive {
+    to {
+        transform: rotate(-45deg);
+    }
+}
+
+@keyframes boyReceive {
+    to {
+        transform: rotate(45deg);
+    }
+}
+
+.ring {
+    position: absolute;
+
+    width: 22px;
+    height: 22px;
+
+    border: 5px solid gold;
+    border-radius: 50%;
+
+    z-index: 50;
+
+    opacity: 0;
+
+    left: calc(50% - 70px);
+    bottom: 185px;
+
+    animation:
+        ringAppear 2s forwards 7s;
+
+    box-shadow:
+        0 0 8px gold,
+        0 0 20px #fff3a0;
+}
+
+.ring::after {
+    content: "💎";
+
+    position: absolute;
+
+    font-size: 12px;
+
+    top: -13px;
+    left: 0;
+}
+
+@keyframes ringAppear {
+
+    0% {
+        opacity: 0;
+        transform: scale(0.2);
+    }
+
+    40% {
+        opacity: 1;
+        transform: scale(1.2);
+    }
+
+    70% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1.1);
+    }
+}
+
+.small-heart {
+    position: absolute;
+    left: 50%;
+    top: 55%;
+    font-size: 28px;
+    opacity: 0;
+    z-index: 35;
+
+    animation:
+        littleHeart 2s forwards 9s;
+}
+
+@keyframes littleHeart {
+
+    0% {
+        opacity: 0;
+
+        transform:
+            translateY(20px)
+            scale(0.5);
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+
+        transform:
+            translateY(-60px)
+            scale(1.2);
+    }
+}
+
+@media (max-width: 600px) {
+
+    .big-heart {
+        width: 220px;
+        height: 220px;
+        top: 29%;
+    }
+
+    .big-heart::before,
+    .big-heart::after {
+        width: 220px;
+        height: 220px;
+    }
+
+    .big-heart::before {
+        top: -110px;
+    }
+
+    .big-heart::after {
+        left: 110px;
+    }
+
+    #message {
+        width: 280px;
+        font-size: 27px;
+    }
+
+    .moon {
+        width: 65px;
+        height: 65px;
+        right: 30px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="scene">
+
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+
+    <div class="moon"></div>
+
+    <div class="big-heart"></div>
+
+    <div id="message">
+        Will You<br>
+        Marry Me? ❤️
+    </div>
+
+    <div class="girl">
+        <div class="head"></div>
+        <div class="body"></div>
+        <div class="arm left-arm"></div>
+        <div class="arm right-arm"></div>
+        <div class="leg left-leg"></div>
+        <div class="leg right-leg"></div>
+    </div>
+
+    <div class="boy">
+        <div class="head"></div>
+        <div class="body"></div>
+        <div class="arm left-arm"></div>
+        <div class="arm right-arm"></div>
+        <div class="leg left-leg"></div>
+        <div class="leg right-leg"></div>
+    </div>
+
+    <div class="ring"></div>
+
+    <div class="small-heart">
+        💕
+    </div>
+
+    <div class="ground"></div>
+
+</div>
+
+</body>
+</html>

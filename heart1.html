@@ -1,0 +1,119 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Slow Animated Heart</title>
+
+    <style>
+        body {
+            margin: 0;
+            background-color: black;
+            overflow: hidden;
+        }
+
+        canvas {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+
+<canvas id="heartCanvas"></canvas>
+
+<script>
+
+var canvas = document.getElementById("heartCanvas");
+var ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+var colors = [
+    "red",
+    "blue",
+    "lime",
+    "yellow",
+    "cyan",
+    "magenta",
+    "orange",
+    "pink"
+];
+
+var centerX = canvas.width / 2;
+var centerY = canvas.height / 2;
+
+var total = 120;
+var i = 0;
+
+
+function drawHeart() {
+
+    if (i < total) {
+
+       
+        var angle = i * (Math.PI * 2) / total;
+
+        
+        var x = 16 * Math.pow(Math.sin(angle), 3) * 15;
+
+        var y = (
+            13 * Math.cos(angle)
+            - 5 * Math.cos(2 * angle)
+            - 2 * Math.cos(3 * angle)
+            - Math.cos(4 * angle)
+        ) * 15;
+
+        
+        var color = colors[Math.floor(Math.random() * colors.length)];
+
+        ctx.strokeStyle = color;
+        ctx.lineWidth = 2;
+
+        
+        ctx.beginPath();
+
+        ctx.moveTo(centerX, centerY);
+
+        ctx.lineTo(
+            centerX + x,
+            centerY - y
+        );
+
+        ctx.stroke();
+
+
+        
+        for (var j = 0; j < 8; j++) {
+
+            var rayAngle = j * 45 * Math.PI / 180;
+
+            ctx.beginPath();
+
+            ctx.moveTo(
+                centerX + x,
+                centerY - y
+            );
+
+            ctx.lineTo(
+                centerX + x + Math.cos(rayAngle) * 6,
+                centerY - y - Math.sin(rayAngle) * 6
+            );
+
+            ctx.stroke();
+        }
+
+        i++;
+
+       
+        setTimeout(drawHeart, 100);
+    }
+}
+
+drawHeart();
+
+</script>
+
+</body>
+</html>
+
