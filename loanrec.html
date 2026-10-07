@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Loan Recovery Portal 💸</title>
+
+```
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: linear-gradient(135deg, #ffd6e7, #d9eaff);
+        text-align: center;
+        color: #333;
+    }
+
+    .page {
+        display: none;
+        min-height: 100vh;
+        padding: 60px 20px;
+        box-sizing: border-box;
+    }
+
+    .active {
+        display: block;
+    }
+
+    .box {
+        background: white;
+        max-width: 600px;
+        margin: auto;
+        padding: 35px;
+        border-radius: 25px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    }
+
+    h1 {
+        font-size: 35px;
+    }
+
+    h2 {
+        color: #ff4f81;
+    }
+
+    button {
+        padding: 13px 25px;
+        border: none;
+        border-radius: 25px;
+        background: #ff4f81;
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+        margin: 10px;
+    }
+
+    button:hover {
+        transform: scale(1.05);
+    }
+
+    .option {
+        display: block;
+        background: #f5f5f5;
+        padding: 15px;
+        margin: 12px;
+        border-radius: 15px;
+        text-align: left;
+    }
+
+    .money {
+        font-size: 70px;
+    }
+
+    #noBtn {
+        position: relative;
+    }
+
+    .warning {
+        color: red;
+        font-weight: bold;
+    }
+
+    .success {
+        color: green;
+        font-weight: bold;
+    }
+</style>
+```
+
+</head>
+
+<body>
+
+<div id="home" class="page active">
+    <div class="box">
+        <div class="money">💸</div>
+
+```
+    <h1>LOAN RECOVERY PORTAL</h1>
+
+    <h2>Dear Friend...</h2>
+
+    <p>
+        Welcome to the official website for recovering
+        <b>MY MONEY</b>. 😭
+    </p>
+
+    <p>
+        Don't worry. This is not a serious legal notice.
+        <br>
+        <b>Yet.</b> 💀
+    </p>
+
+    <button onclick="showPage('check')">ENTER THE PORTAL 💸</button>
+</div>
+```
+
+</div>
+
+<div id="check" class="page">
+    <div class="box">
+
+```
+    <h1>FRIENDSHIP VERIFICATION ❤️</h1>
+
+    <p>Before we discuss the money, let's confirm something...</p>
+
+    <label class="option">
+        <input type="checkbox" class="check">
+        I am actually her friend.
+    </label>
+
+    <label class="option">
+        <input type="checkbox" class="check">
+        I share everything with her.
+    </label>
+
+    <label class="option">
+        <input type="checkbox" class="check">
+        I am emotionally available.
+    </label>
+
+    <label class="option">
+        <input type="checkbox" class="check">
+        I remember borrowing money from her. 👀
+    </label>
+
+    <label class="option">
+        <input type="checkbox" class="check">
+        I remember that I promised to return it after admission cash.
+    </label>
+
+    <button id="continueBtn" disabled onclick="showPage('money')">
+        CONTINUE
+    </button>
+
+</div>
+```
+
+</div>
+
+<div id="money" class="page">
+    <div class="box">
+
+```
+    <div class="money">💰</div>
+
+    <h1>MONEY CHECKPOINT</h1>
+
+    <p>
+        Everything is going great in this friendship...
+    </p>
+
+    <p>
+        Except for one tiny little thing.
+    </p>
+
+    <h2>MY MONEY. 💀</h2>
+
+    <p>
+        Current status:
+    </p>
+
+    <h2>⏳ WAITING FOR ADMISSION CASH</h2>
+
+    <p>
+        Patient friend status: <b>ACTIVE</b> 😭
+    </p>
+
+    <button onclick="showPage('promise')">
+        CHECK PAYMENT PROMISE
+    </button>
+
+</div>
+```
+
+</div>
+
+<div id="promise" class="page">
+    <div class="box">
+
+```
+    <h1>PROMISE VERIFICATION 📋</h1>
+
+    <p>
+        Did you say:
+    </p>
+
+    <h2>
+        "I'll give your money after I get the admission cash." 😭
+    </h2>
+
+    <button onclick="paymentConfirmed()">
+        YES, I SAID THAT
+    </button>
+
+    <button id="noBtn" onclick="escapeAttempt()">
+        NOPE 😌
+    </button>
+
+    <p id="message"></p>
+
+</div>
+```
+
+</div>
+
+<div id="final" class="page">
+    <div class="box">
+
+```
+    <div class="money">💸❤️</div>
+
+    <h1>FRIENDSHIP APPROVED!</h1>
+
+    <h2>FRIEND STATUS: 100% ACTIVE ✅</h2>
+
+    <p>Emotional support: ✅</p>
+    <p>Sharing everything: ✅</p>
+    <p>Being friendly: ✅</p>
+    <p>Always available: ✅</p>
+
+    <p class="warning">
+        Returning borrowed money: ⏳
+    </p>
+
+    <h2>PAYMENT STATUS</h2>
+
+    <p>
+        Waiting for admission cash... 😭
+    </p>
+
+    <p>
+        <b>Patient friend detected.</b>
+    </p>
+
+    <p>
+        But please don't make her wait until retirement. 💀
+    </p>
+
+    <h2>💸 MONEY COMING SOON™ 💸</h2>
+
+    <p>
+        Thank you for being a great friend.
+        <br>
+        Now please return the money. 😂❤️
+    </p>
+
+    <button onclick="location.reload()">
+        START AGAIN 🔄
+    </button>
+
+</div>
+```
+
+</div>
+
+<script>
+
+var checkboxes = document.querySelectorAll(".check");
+var continueBtn = document.getElementById("continueBtn");
+
+checkboxes.forEach(function(box) {
+
+    box.addEventListener("change", function() {
+
+        var allChecked = true;
+
+        checkboxes.forEach(function(item) {
+
+            if (!item.checked) {
+                allChecked = false;
+            }
+
+        });
+
+        continueBtn.disabled = !allChecked;
+
+    });
+
+});
+
+
+function showPage(pageId) {
+
+    var pages = document.querySelectorAll(".page");
+
+    pages.forEach(function(page) {
+        page.classList.remove("active");
+    });
+
+    document.getElementById(pageId).classList.add("active");
+}
+
+
+function paymentConfirmed() {
+
+    showPage("final");
+
+}
+
+
+function escapeAttempt() {
+
+    var button = document.getElementById("noBtn");
+    var message = document.getElementById("message");
+
+    message.innerHTML =
+        "🚨 ERROR 404: Escape from debt not found. 💀<br><br>" +
+        "Nice try bro. Your friendship contract has already been signed. 😂";
+
+    button.style.position = "absolute";
+    button.style.left = Math.random() * 70 + "%";
+    button.style.top = Math.random() * 70 + "%";
+
+}
+
+</script>
+
+</body>
+</html>
