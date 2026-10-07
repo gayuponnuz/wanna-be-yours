@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<title>Virtual Kiss Delivery 💋</title>
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: Arial, sans-serif;
+        background: linear-gradient(135deg, #ffd6e7, #e8d8ff);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        overflow: hidden;
+    }
+
+    .box {
+        width: 90%;
+        max-width: 600px;
+        background: white;
+        padding: 40px 25px;
+        border-radius: 30px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    }
+
+    .emoji {
+        font-size: 70px;
+    }
+
+    h1 {
+        color: #ff4f81;
+        font-size: 35px;
+    }
+
+    h2 {
+        color: #ff4f81;
+    }
+
+    p {
+        font-size: 18px;
+        line-height: 1.6;
+    }
+
+    button {
+        background: #ff4f81;
+        color: white;
+        border: none;
+        padding: 15px 30px;
+        border-radius: 30px;
+        font-size: 18px;
+        cursor: pointer;
+        margin-top: 15px;
+    }
+
+    button:hover {
+        transform: scale(1.05);
+    }
+
+    #kissMessage {
+        display: none;
+    }
+
+    .kiss {
+        position: fixed;
+        bottom: -50px;
+        font-size: 35px;
+        animation: kissFly 4s linear forwards;
+        pointer-events: none;
+    }
+
+    @keyframes kissFly {
+        0% {
+            transform: translateY(0) rotate(0deg);
+            opacity: 1;
+        }
+
+        100% {
+            transform: translateY(-110vh) rotate(30deg);
+            opacity: 0;
+        }
+    }
+
+    .heart {
+        position: fixed;
+        bottom: -50px;
+        font-size: 25px;
+        animation: heartFly 5s linear forwards;
+        pointer-events: none;
+    }
+
+    @keyframes heartFly {
+        0% {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        100% {
+            transform: translateY(-110vh);
+            opacity: 0;
+        }
+    }
+
+    @media (max-width: 600px) {
+
+        .box {
+            width: 92%;
+            padding: 30px 18px;
+        }
+
+        .emoji {
+            font-size: 55px;
+        }
+
+        h1 {
+            font-size: 28px;
+        }
+
+        h2 {
+            font-size: 22px;
+        }
+
+        p {
+            font-size: 16px;
+        }
+
+        button {
+            font-size: 16px;
+            padding: 13px 25px;
+        }
+    }
+</style>
+```
+
+</head>
+
+<body>
+
+```
+<div class="box">
+
+    <div class="emoji">📦💋</div>
+
+    <h1>VIRTUAL KISS DELIVERY</h1>
+
+    <p>
+        A special delivery has arrived for you... ❤️
+    </p>
+
+    <p>
+        <b>From:</b> Your girlfriend 💕
+        <br>
+        <b>To:</b> You 😌
+        <br>
+        <b>Package:</b> Unlimited virtual kisses 💋
+    </p>
+
+    <button onclick="openKiss()">
+        OPEN YOUR KISS 💋
+    </button>
+
+    <div id="kissMessage">
+
+        <h2>MWAHHHHH! 💋❤️</h2>
+
+        <p>
+            💋 Kiss successfully delivered!
+        </p>
+
+        <p>
+            Delivery status: <b>RECEIVED ❤️</b>
+        </p>
+
+        <p>
+            This is only the virtual version... 😌
+        </p>
+
+        <h2>
+            The real one is waiting for you. ❤️
+        </h2>
+
+    </div>
+
+</div>
+
+<script>
+
+    function openKiss() {
+
+        document.getElementById("kissMessage").style.display = "block";
+
+        for (var i = 0; i < 25; i++) {
+
+            var kiss = document.createElement("div");
+
+            kiss.className = "kiss";
+            kiss.innerHTML = "💋";
+
+            kiss.style.left = Math.random() * 100 + "%";
+            kiss.style.animationDuration =
+                (3 + Math.random() * 3) + "s";
+
+            document.body.appendChild(kiss);
+
+            setTimeout(function() {
+                kiss.remove();
+            }, 6000);
+        }
+
+        for (var i = 0; i < 15; i++) {
+
+            var heart = document.createElement("div");
+
+            heart.className = "heart";
+            heart.innerHTML = "❤️";
+
+            heart.style.left = Math.random() * 100 + "%";
+            heart.style.animationDuration =
+                (3 + Math.random() * 3) + "s";
+
+            document.body.appendChild(heart);
+
+            setTimeout(function() {
+                heart.remove();
+            }, 6000);
+        }
+    }
+
+</script>
+
+
+</body>
+</html>
